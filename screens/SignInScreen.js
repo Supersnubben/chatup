@@ -1,4 +1,5 @@
 import { Image, JSX, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import styles from '../styles/styles.js'
 import React from 'react'
 
 const SignInScreen = () => {
@@ -37,57 +38,3 @@ const SignInScreen = () => {
 }
 
 export default SignInScreen
-
-const styles = StyleSheet.create({
-  outerContainer: {
-    flex: 1,
-    backgroundColor: '#9af3f3',
-    te: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-
-  innerContainer: {
-    marginTop: 10,
-    alignSelf: 'stretch',
-    gap: 8,
-
-  },
-
-  text: {
-    color: '#87888c',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    padding: 12,
-  },
-
-  textInput: {
-
-    backgroundColor: 'white',
-    paddingVertical: 8,
-    paddingLeft: 12,
-    alignItems: 'stretch',
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: '25b8bf'
-  },
-
-  buttonContainer: {
-
-    alignSelf: 'stretch',
-    marginTop: 8,
-    backgroundColor: '#25b8bf',
-    alignItems: 'center',
-    borderRadius: 10,
-    padding: 2,
-    paddingBottom: 8,
-  },
-
-  logo: {
-
-    width: 300,
-    height: 191,
-
-  },
-});
