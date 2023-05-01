@@ -1,10 +1,12 @@
-import { Image, JSX, TouchableOpacity, TextInput, StyleSheet, Text, View } from 'react-native'
+import { Image, JSX, TouchableOpacity, TextInput, StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native'
 import styles from '../styles/styles.js'
 import React from 'react'
 
 const SignUpScreen = () => {
   return (
-    <View style={styles.shellContainer}>
+    <KeyboardAvoidingView 
+      style={styles.shellContainer}
+      behavior='padding'>
         <TouchableOpacity>
               <Image style={styles.backButton} source={require('../images/backbutton.png')} />
         </TouchableOpacity>
@@ -30,11 +32,14 @@ const SignUpScreen = () => {
           <TextInput 
           style={styles.textInput}
           placeholder='Enter password'
-          placeholderTextColor={'#87888c'}/>
+          placeholderTextColor={'#87888c'}
+          secureTextEntry
+          />
         <TextInput 
           style={styles.textInput}
           placeholder='Confirm password'
-          placeholderTextColor={'#87888c'} />
+          placeholderTextColor={'#87888c'}
+          secureTextEntry />
       </View>
       
         <TouchableOpacity style={styles.buttonContainer}>
@@ -44,7 +49,7 @@ const SignUpScreen = () => {
         </TouchableOpacity>
       
       </View>
-      </View>
+      </KeyboardAvoidingView>
   )
 }
 

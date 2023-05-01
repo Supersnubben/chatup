@@ -4,6 +4,9 @@ import React from 'react'
 
 const SignInScreen = () => {
   return (
+    <KeyboardAvoidingView 
+      style={styles.shellContainer}
+      behavior='padding'>
     <View style={styles.outerContainer}>
       <Image
         style={styles.logo}
@@ -19,7 +22,8 @@ const SignInScreen = () => {
         <TextInput 
           style={styles.textInput}
           placeholder='Enter password'
-          placeholderTextColor={'#87888c'} />
+          placeholderTextColor={'#87888c'}
+          secureTextEntry />
       </View>
       
         <TouchableOpacity style={styles.buttonContainer}>
@@ -34,6 +38,7 @@ const SignInScreen = () => {
         </TouchableOpacity>
       </View>
     </View>
+    </KeyboardAvoidingView>
   )
 }
 
