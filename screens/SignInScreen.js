@@ -41,7 +41,7 @@ export default SignInScreen
 const styles = StyleSheet.create({
   outerContainer: {
     flex: 1,
-    backgroundColor: '#20232b',
+    backgroundColor: '#9af3f3',
     te: 'white',
     alignItems: 'center',
     justifyContent: 'center',
@@ -64,18 +64,20 @@ const styles = StyleSheet.create({
 
   textInput: {
 
-    backgroundColor: '#16171b',
+    backgroundColor: 'white',
     paddingVertical: 8,
     paddingLeft: 12,
     alignItems: 'stretch',
     borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '25b8bf'
   },
 
   buttonContainer: {
 
     alignSelf: 'stretch',
     marginTop: 8,
-    backgroundColor: '#5dbe74',
+    backgroundColor: '#25b8bf',
     alignItems: 'center',
     borderRadius: 10,
     padding: 2,
