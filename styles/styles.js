@@ -4,7 +4,6 @@ export default StyleSheet.create({
     outerContainer: {
       flex: 1,
       backgroundColor: '#9af3f3',
-      te: 'white',
       alignItems: 'center',
       justifyContent: 'center',
       padding: 20,
@@ -38,7 +37,7 @@ export default StyleSheet.create({
     buttonContainer: {
   
       alignSelf: 'stretch',
-      marginTop: 8,
+      marginTop: 12,
       backgroundColor: '#25b8bf',
       alignItems: 'center',
       borderRadius: 10,
@@ -54,7 +53,7 @@ export default StyleSheet.create({
     },
 
     addImage: {
-        marginBottom: 25,
+        marginBottom: 50,
         width: 150,
         height: 150,
         borderRadius: 150/2,
@@ -72,17 +71,9 @@ export default StyleSheet.create({
 
     },
 
-    absoluteView: {
-        position: 'absolute',
-        top: 20,
-        left: 20,
-        width: 50,
-        height: 50,
-      },
-
-      relativeView: {
-        position: 'relative',
-        width: '100%',
-        height: '100%',
+      shellContainer: {
+        flex: 1,
+        backgroundColor: '#9af3f3',
+        padding: 20,
       },
   });

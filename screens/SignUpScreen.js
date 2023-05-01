@@ -4,15 +4,12 @@ import React from 'react'
 
 const SignUpScreen = () => {
   return (
-    
+    <View style={styles.shellContainer}>
+        <TouchableOpacity>
+              <Image style={styles.backButton} source={require('../images/backbutton.png')} />
+        </TouchableOpacity>
     <View style={styles.outerContainer}>
-      <TouchableOpacity>
-        <View style={styles.relativeView}>    
-          <View style={styles.absoluteView}>
-            <Image style={styles.backButton} source={require('../images/backbutton.png')} />
-          </View>
-        </View>
-      </TouchableOpacity>
+
       <TouchableOpacity>
         <View style={styles.addImage}>
           <Text>Add image</Text>
@@ -46,6 +43,7 @@ const SignUpScreen = () => {
           </View>
         </TouchableOpacity>
       
+      </View>
       </View>
   )
 }
