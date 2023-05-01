@@ -1,4 +1,4 @@
-import { Image, JSX, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, JSX, StyleSheet, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView} from 'react-native'
 import styles from '../styles/styles.js'
 import React from 'react'
 
