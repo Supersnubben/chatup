@@ -3,6 +3,9 @@ import { ToastAndroid, Image, TouchableOpacity, TextInput, KeyboardAvoidingView 
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet, Text, View } from 'react-native';
 import styles from '../styles/styles.js';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from '../firebase.js';
+
 
 const SignUpScreen = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -32,8 +35,33 @@ const SignUpScreen = ({ navigation }) => {
       return;
     }
 
-    ToastAndroid.show('All fields are filled in correctly.', ToastAndroid.SHORT);
-    // continue with signup process
+    createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+
+      // Update the user profile
+      return updateProfile(user, {
+        displayName: name,
+        photoURL: image
+      }).then(() => {
+        // Profile updated!
+        // Clear the form
+        setName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setImage(null);
+
+        ToastAndroid.show('User registered successfully.', ToastAndroid.SHORT);
+      });
+    })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // Log the error or show it in a toast
+        console.log(errorCode, errorMessage);
+        ToastAndroid.show(errorMessage, ToastAndroid.SHORT);
+      });
   };
 
   const validateEmail = (email) => {
