@@ -1,9 +1,7 @@
-import { ToastAndroid, Image, JSX, StyleSheet, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView } from 'react-native'
+import { ToastAndroid, Image, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView } from 'react-native'
 import styles from '../styles/styles.js'
 import React, { useState } from 'react';
-import SignUpScreen from './SignUpScreen';
-import HomeScreen from './HomeScreen'
-import { signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase.js';
 
 const SignInScreen = ({ navigation }) => {
