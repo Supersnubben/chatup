@@ -3,7 +3,7 @@ import { ToastAndroid } from 'react-native';
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, KeyboardAvoidingView, Alert } from 'react-native';
 import styles from '../styles/styles.js';
 
-const SignUpScreen = ({navigation}) => {
+const SignUpScreen = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,33 +39,33 @@ const SignUpScreen = ({navigation}) => {
   };
 
   return (
-    <KeyboardAvoidingView 
+    <KeyboardAvoidingView
       style={styles.shellContainer}
       behavior='padding'>
       <TouchableOpacity onPress={handleBackButton}>
-        <Image 
-          style={styles.backButton} source={require('../images/backbutton.png')}/>
+        <Image
+          style={styles.backButton} source={require('../images/backbutton.png')} />
       </TouchableOpacity>
       <View style={styles.outerContainer}>
         <TouchableOpacity>
           <View style={styles.addImage}>
-          <Text style={{color: '#87888c'}}>Add image</Text>
+            <Text style={{ color: '#87888c' }}>Add image</Text>
           </View>
         </TouchableOpacity>
         <View style={styles.innerContainer}>
-          <TextInput 
+          <TextInput
             style={styles.textInput}
             placeholder='Enter full name'
             placeholderTextColor={'#87888c'}
             value={name}
             onChangeText={text => setName(text)} />
-          <TextInput 
+          <TextInput
             style={styles.textInput}
             placeholder='Enter email'
             placeholderTextColor={'#87888c'}
             value={email}
             onChangeText={text => setEmail(text)} />
-          <TextInput 
+          <TextInput
             style={styles.textInput}
             placeholder='Enter password'
             placeholderTextColor={'#87888c'}
@@ -73,7 +73,7 @@ const SignUpScreen = ({navigation}) => {
             value={password}
             onChangeText={text => setPassword(text)}
           />
-          <TextInput 
+          <TextInput
             style={styles.textInput}
             placeholder='Confirm password'
             placeholderTextColor={'#87888c'}
@@ -81,14 +81,14 @@ const SignUpScreen = ({navigation}) => {
             value={confirmPassword}
             onChangeText={text => setConfirmPassword(text)}
           />
-        
-        <TouchableOpacity 
-          style={styles.buttonContainer}
-          onPress={handleSignUp}>
-          <View>
-            <Text style={styles.buttonContainer}>Register account</Text>
-          </View>
-        </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={handleSignUp}>
+            <View>
+              <Text style={styles.buttonContainer}>Register account</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </KeyboardAvoidingView>
