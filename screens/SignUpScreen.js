@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ToastAndroid } from 'react-native';
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, KeyboardAvoidingView, Alert } from 'react-native';
 import styles from '../styles/styles.js';
 
@@ -10,20 +11,20 @@ const SignUpScreen = ({navigation}) => {
 
   const handleSignUp = () => {
     if (!name || !email || !password || !confirmPassword) {
-      Alert.alert('Please fill all fields.');
+      ToastAndroid.show('Please fill all fields.', ToastAndroid.SHORT);
       return;
     }
 
     if (!validateEmail(email)) {
-      Alert.alert('Please enter a valid email address.');
+      ToastAndroid.show('Please enter a valid email address.', ToastAndroid.SHORT);
       return;
     }
 
     if (password !== confirmPassword) {
-      Alert.alert('Passwords do not match.');
+      ToastAndroid.show('Passwords do not match.', ToastAndroid.SHORT);
       return;
     }
-
+    ToastAndroid.show('All fields are filled in correctly.', ToastAndroid.SHORT);
     // continue with signup process
   };
 
