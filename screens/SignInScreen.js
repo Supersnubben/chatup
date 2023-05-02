@@ -1,8 +1,15 @@
 import { Image, JSX, StyleSheet, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView} from 'react-native'
 import styles from '../styles/styles.js'
 import React from 'react'
+import SignUpScreen from './SignUpScreen';
 
-const SignInScreen = () => {
+const SignInScreen = ({navigation}) => {
+
+    const handlePress = () => {
+      navigation.navigate('SignUpScreen');
+    };
+  
+
   return (
     <KeyboardAvoidingView 
       style={styles.shellContainer}
@@ -24,16 +31,14 @@ const SignInScreen = () => {
           placeholder='Enter password'
           placeholderTextColor={'#87888c'}
           secureTextEntry />
-      </View>
-      
         <TouchableOpacity style={styles.buttonContainer}>
           <View>
             <Text style={styles.buttonContainer}>Sign in</Text>
           </View>
         </TouchableOpacity>
-      
+      </View>
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handlePress}>
             <Text style={styles.text}>Create a new account</Text>
         </TouchableOpacity>
       </View>

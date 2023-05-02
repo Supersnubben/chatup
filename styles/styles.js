@@ -20,7 +20,7 @@ export default StyleSheet.create({
       color: '#87888c',
       alignItems: 'center',
       alignSelf: 'stretch',
-      padding: 12,
+      marginTop: 12,
     },
   
     textInput: {
@@ -35,14 +35,15 @@ export default StyleSheet.create({
     },
   
     buttonContainer: {
-  
-      alignSelf: 'stretch',
-      marginTop: 12,
+      color: 'white',
+      alignSelf: 'center',
+      justifyContent: 'center',
+      width: '100%',
+      height: 45,
       backgroundColor: '#25b8bf',
       alignItems: 'center',
       borderRadius: 10,
-      padding: 2,
-      paddingBottom: 8,
+      padding: 10,
     },
   
     logo: {
@@ -53,6 +54,7 @@ export default StyleSheet.create({
     },
 
     addImage: {
+        color: '#87888c',
         marginBottom: 50,
         width: 150,
         height: 150,
@@ -68,12 +70,13 @@ export default StyleSheet.create({
     backButton: {
         width: 25,
         height: 25,
+        marginTop: 20,
 
     },
 
       shellContainer: {
         flex: 1,
         backgroundColor: '#9af3f3',
-        padding: 20,
+        padding: 30,
       },
   });

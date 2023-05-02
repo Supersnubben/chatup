@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, KeyboardAvoidingView, Alert } from 'react-native';
 import styles from '../styles/styles.js';
 
-const SignUpScreen = () => {
+const SignUpScreen = ({navigation}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,7 +25,6 @@ const SignUpScreen = () => {
     }
 
     // continue with signup process
-    // ...
   };
 
   const validateEmail = (email) => {
@@ -34,17 +33,22 @@ const SignUpScreen = () => {
     return pattern.test(email);
   };
 
+  const handleBackButton = () => {
+    navigation.goBack();
+  };
+
   return (
     <KeyboardAvoidingView 
       style={styles.shellContainer}
       behavior='padding'>
-      <TouchableOpacity>
-        <Image style={styles.backButton} source={require('../images/backbutton.png')} />
+      <TouchableOpacity onPress={handleBackButton}>
+        <Image 
+          style={styles.backButton} source={require('../images/backbutton.png')}/>
       </TouchableOpacity>
       <View style={styles.outerContainer}>
         <TouchableOpacity>
           <View style={styles.addImage}>
-            <Text>Add image</Text>
+          <Text style={{color: '#87888c'}}>Add image</Text>
           </View>
         </TouchableOpacity>
         <View style={styles.innerContainer}>
@@ -76,14 +80,15 @@ const SignUpScreen = () => {
             value={confirmPassword}
             onChangeText={text => setConfirmPassword(text)}
           />
-        </View>
+        
         <TouchableOpacity 
           style={styles.buttonContainer}
           onPress={handleSignUp}>
           <View>
-            <Text style={styles.buttonText}>Register account</Text>
+            <Text style={styles.buttonContainer}>Register account</Text>
           </View>
         </TouchableOpacity>
+        </View>
       </View>
     </KeyboardAvoidingView>
   );
