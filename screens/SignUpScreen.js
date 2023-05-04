@@ -41,8 +41,6 @@ const SignUpScreen = ({ navigation }) => {
 
       // Update the user profile
       return updateProfile(user, {
-        displayName: name,
-        photoURL: image
       }).then(() => {
         // Profile updated!
         // Clear the form
