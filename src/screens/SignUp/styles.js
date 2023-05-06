@@ -36,14 +36,12 @@ export default StyleSheet.create({
     borderWidth: 2,
   },
 
-  profileImageHome: {
-    marginTop: 20,
-    marginLeft: 20,
-    width: 50,
-    height: 50,
+  profileImage: {
+    width: 150,
+    height: 150,
     borderWidth: 2,
     borderColor: themes.colors.secondary,
-    borderRadius: 50 / 2,
+    borderRadius: 150 / 2,
   },
 
   backButton: {
