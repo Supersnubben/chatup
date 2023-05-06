@@ -3,7 +3,7 @@ import themes from '/home/robin/repos/chatup/src/utils/themes.js'
 
 export default StyleSheet.create({
 
-outerContainer: {
+  outerContainer: {
     flex: 1,
     flexDirection: 'column',
     alignItems: 'stretch',
@@ -14,20 +14,6 @@ outerContainer: {
     flex: 6,
     backgroundColor: themes.colors.primary,
     borderRadius: 50,
-  },
-
-  logout: {
-    marginTop: 20,
-    marginRight: 30,
-    width: 25,
-    height: 25
-  },
-
-  add: {
-    width: 175,
-    height: 175,
-    marginLeft: '35%',
-    marginBottom: 100,
   },
 
   profileImage: {

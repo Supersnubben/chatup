@@ -1,6 +1,7 @@
 import { FlatList, Image, TouchableOpacity, Text, View, BackHandler } from 'react-native'
 import styles from './styles'
 import React, { useEffect } from 'react'
+import { LogoutButton, AddButton } from '../../components/common'
 
 const HomeScreen = ({ navigation }) => {
 
@@ -22,6 +23,10 @@ const HomeScreen = ({ navigation }) => {
     navigation.navigate('LoginScreen');
   };
 
+  const handleAddButton = () => {
+    navigation.navigate('UserScreen');
+  }
+
   return (
     <View style={styles.outerContainer}>
       <View style={styles.header}>
@@ -32,11 +37,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.nameContainer}>
           <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 18 }}>Robin Blondin</Text>
         </View>
-        <TouchableOpacity onPress={handleLogout}>
-          <Image
-            style={styles.logout}
-            source={require('/home/robin/repos/chatup/images/logout.png')} />
-        </TouchableOpacity>
+        <LogoutButton onPress={handleLogout} />
       </View>
       <View style={styles.innerContainer}>
         <FlatList>
@@ -44,13 +45,7 @@ const HomeScreen = ({ navigation }) => {
         </FlatList>
       </View>
       <View style={styles.header}>
-        <TouchableOpacity>
-          <View>
-            <Image
-              style={styles.add}
-              source={require('/home/robin/repos/chatup/images/addButton.png')} />
-          </View>
-        </TouchableOpacity>
+        <AddButton onPress={handleAddButton} />
       </View>
     </View>
   )
