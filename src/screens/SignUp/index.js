@@ -128,29 +128,27 @@ const encodeImage = async (image) => {
           style={styles.backButton} source={require('../../../images/backbutton.png')} />
       </TouchableOpacity>
       <View style={styles.outerContainer}>
-        <TouchableOpacity onPress={handleSelectImage}>
+        <TouchableOpacity onPress={handleSelectImage} style={styles.addImage}>
           {image ? (
             <Image style={styles.profileImage} source={{ uri: image.uri }} />
           ) : (
-            <View style={styles.addImage}>
-              <Text style={{ color: themes.colors.secondaryText }}>Add image</Text>
-            </View>
+            <Text style={{ color: themes.colors.textSecondary }}>Add image</Text>
           )}
         </TouchableOpacity>
         <View style={styles.innerContainer}>
           <CustomTextInput
             placeholder='Enter full name'
-            placeholderTextColor={themes.colors.secondaryText}
+            placeholderTextColor={themes.colors.textSecondary}
             value={name}
             onChangeText={text => setName(text)} />
           <CustomTextInput
             placeholder='Enter email'
-            placeholderTextColor={themes.colors.secondaryText}
+            placeholderTextColor={themes.colors.textSecondary}
             value={email}
             onChangeText={text => setEmail(text)} />
           <CustomTextInput
             placeholder='Enter password'
-            placeholderTextColor={themes.colors.secondaryText}
+            placeholderTextColor={themes.colors.textSecondary}
             secureTextEntry
             value={password}
             onChangeText={text => setPassword(text)}
@@ -158,12 +156,12 @@ const encodeImage = async (image) => {
           <CustomTextInput
 
             placeholder='Confirm password'
-            placeholderTextColor={themes.colors.secondaryText}
+            placeholderTextColor={themes.colors.textSecondary}
             secureTextEntry
             value={confirmPassword}
             onChangeText={text => setConfirmPassword(text)}
           />
-          <CustomButton title="Register account" />
+          <CustomButton onPress={handleSignUp} title="Register account" />
         </View>
       </View>
     </KeyboardAvoidingView>
