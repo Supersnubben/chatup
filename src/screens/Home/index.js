@@ -31,7 +31,7 @@ const HomeScreen = () => {
           <View>
             <Image
               style={styles.add}
-              source={require('/home/robin/repos/chatup/images/export.png')} />
+              source={require('/home/robin/repos/chatup/images/addButton.png')} />
           </View>
         </TouchableOpacity>
       </View>
