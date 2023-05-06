@@ -3,8 +3,8 @@ import styles from './styles'
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
-import Button from '../../components/common/Button';
-import TextInput from '../../components/common/TextInput';
+import Button from '../../components/common/CustomButton';
+import TextInput from '../../components/common/CustomTextInput';
 
 const SignInScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');

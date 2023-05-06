@@ -8,8 +8,8 @@ import { auth, db } from '../../utils/firebase';
 import { collection, addDoc } from "firebase/firestore";
 import * as FileSystem from 'expo-file-system';
 import mime from 'react-native-mime-types';
-import TextInput from '../../components/common/TextInput'
-import Button from '../../components/common/Button'
+import TextInput from '../../components/common/CustomTextInput'
+import Button from '../../components/common/CustomButton'
 
 
 const SignUpScreen = ({ navigation }) => {
