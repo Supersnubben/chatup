@@ -1,8 +1,27 @@
-import { FlatList, Image, TouchableOpacity, StyleSheet, Text, View } from 'react-native'
+import { FlatList, Image, TouchableOpacity, Text, View, BackHandler } from 'react-native'
 import styles from './styles'
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+
+  useEffect(() => {
+    const backAction = () => {
+      handleLogout();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
+  const handleLogout = () => {
+    navigation.navigate('LoginScreen');
+  };
+
   return (
     <View style={styles.outerContainer}>
       <View style={styles.header}>
@@ -13,12 +32,10 @@ const HomeScreen = () => {
         <View style={styles.nameContainer}>
           <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 18 }}>Robin Blondin</Text>
         </View>
-        <TouchableOpacity>
-          <View>
-            <Image
-              style={styles.logout}
-              source={require('/home/robin/repos/chatup/images/logout.png')} />
-          </View>
+        <TouchableOpacity onPress={handleLogout}>
+          <Image
+            style={styles.logout}
+            source={require('/home/robin/repos/chatup/images/logout.png')} />
         </TouchableOpacity>
       </View>
       <View style={styles.innerContainer}>
