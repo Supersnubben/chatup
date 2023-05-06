@@ -24,15 +24,15 @@ export default StyleSheet.create({
   },
 
   addImage: {
-    color: '#87888c',
+    color: themes.colors.textSecondary,
     marginBottom: 50,
     width: 150,
     height: 150,
     borderRadius: 150 / 2,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#EDFFFF',
-    borderColor: '#25b8bf',
+    backgroundColor: themes.colors.inputBackground,
+    borderColor: themes.colors.secondary,
     borderWidth: 2,
   },
 
@@ -42,8 +42,15 @@ export default StyleSheet.create({
     width: 50,
     height: 50,
     borderWidth: 2,
-    borderColor: '#9af3f3',
+    borderColor: themes.colors.secondary,
     borderRadius: 50 / 2,
+  },
+
+  backButton: {
+    width: 25,
+    height: 25,
+    marginTop: 20,
+
   },
 
 })
