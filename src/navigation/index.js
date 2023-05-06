@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '../../node_modules/@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/Home';
 import LoginScreen from '../screens/Login';
 import SignUpScreen from '../screens/SignUp'
@@ -10,7 +10,6 @@ const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
-    <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen options={{ headerShown: false }} name="SignInScreen" component={LoginScreen} />
         <Stack.Screen options={{ headerShown: false }} name="SignUpScreen" component={SignUpScreen} />
@@ -18,7 +17,6 @@ const AppNavigator = () => {
         <Stack.Screen options={{ headerShown: false }} name="Chatscreen" component={ChatScreen} />
         <Stack.Screen options={{ headerShown: false }} name="UserScreen" component={UserScreen} />
       </Stack.Navigator>
-    </NavigationContainer>
   );
 };
 
