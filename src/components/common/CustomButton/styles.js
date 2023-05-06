@@ -3,7 +3,7 @@ import themes from '../../../utils/themes'
 
 export default StyleSheet.create({
 
-buttonContainer: {
+  buttonContainer: {
     color: themes.colors.textPrimary,
     alignSelf: 'center',
     justifyContent: 'center',
@@ -14,5 +14,10 @@ buttonContainer: {
     borderRadius: 10,
     padding: 10,
   },
+
+  buttonText: {
+    color: themes.colors.textPrimary,
+    ...themes.text.small,
+  }
 
 })
