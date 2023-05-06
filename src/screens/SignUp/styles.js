@@ -44,11 +44,5 @@ export default StyleSheet.create({
     borderRadius: 150 / 2,
   },
 
-  backButton: {
-    width: 25,
-    height: 25,
-    marginTop: 20,
-
-  },
 
 })

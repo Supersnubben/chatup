@@ -8,8 +8,7 @@ import { auth, db } from '../../utils/firebase';
 import { collection, addDoc } from "firebase/firestore";
 import * as FileSystem from 'expo-file-system';
 import mime from 'react-native-mime-types';
-import CustomTextInput from '../../components/common/CustomTextInput'
-import CustomButton from '../../components/common/CustomButton'
+import { CustomButton, CustomTextInput, BackButton } from '../../components/common';
 import themes from '../../utils/themes'
 
 
@@ -123,10 +122,7 @@ const SignUpScreen = ({ navigation }) => {
     <KeyboardAvoidingView
       style={styles.shellContainer}
       behavior='padding'>
-      <TouchableOpacity onPress={handleBackButton}>
-        <Image
-          style={styles.backButton} source={require('../../../images/backbutton.png')} />
-      </TouchableOpacity>
+      <BackButton onPress={handleBackButton} />
       <View style={styles.outerContainer}>
         <TouchableOpacity onPress={handleSelectImage} style={styles.addImage}>
           {image ? (
