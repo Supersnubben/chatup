@@ -1,10 +1,10 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import styles from './styles'
 
-const Button = ({ title, onPress, style, textStyle }) => {
+const CustomButton = ({ title, onPress, style, textStyle }) => {
   return (
-    <TouchableOpacity onPress={handleSignIn} style={styles.buttonContainer}>
+    <TouchableOpacity style={styles.buttonContainer}>
         <View>
             <Text style={styles.buttonContainer}>{title}</Text>
         </View>
@@ -12,4 +12,4 @@ const Button = ({ title, onPress, style, textStyle }) => {
   );
 };
 
-export default Button;
+export default CustomButton;

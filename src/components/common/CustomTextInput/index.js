@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 import styles from './styles'
 
-const TextInput = (props) => {
+const CustomTextInput = (props) => {
   return (
     <TextInput
       style={styles.textInput}
@@ -11,4 +11,4 @@ const TextInput = (props) => {
   );
 };
 
-export default TextInput;
+export default CustomTextInput;
