@@ -16,6 +16,8 @@ const SignInScreen = ({ navigation }) => {
         // Signed in successfully
         const user = userCredential.user;
         navigation.navigate('HomeScreen');
+        setPassword('');
+        setEmail('');
       })
       .catch((error) => {
         const errorCode = error.code;
