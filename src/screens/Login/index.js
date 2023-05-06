@@ -1,10 +1,10 @@
-import { ToastAndroid, Image, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView, Button } from 'react-native'
+import { ToastAndroid, Image, Text, TouchableOpacity, View, KeyboardAvoidingView } from 'react-native'
 import styles from './styles'
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
-import Button from '../../components/common/CustomButton';
-import TextInput from '../../components/common/CustomTextInput';
+import CustomButton from '../../components/common/CustomButton';
+import CustomTextInput from '../../components/common/CustomTextInput';
 
 const SignInScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
@@ -53,18 +53,18 @@ const SignInScreen = ({ navigation }) => {
           <Text style={styles.text}>Login to continue</Text>
         </View>
         <View style={styles.innerContainer}>
-          <TextInput
+          <CustomTextInput
             placeholder='Enter email adress'
             placeholderTextColor={'#87888c'}
             value={email}
             onChangeText={text => setEmail(text)} />
-          <TextInput
+          <CustomTextInput
             placeholder='Enter password'
             placeholderTextColor={'#87888c'}
             secureTextEntry
             value={password}
             onChangeText={text => setPassword(text)} />
-          <Button title="Sign in"></Button>
+          <CustomButton title="Sign in" onPress={handleSignIn}></CustomButton>
         </View>
         <View>
           <TouchableOpacity onPress={handlePress}>
