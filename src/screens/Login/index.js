@@ -2,7 +2,9 @@ import { ToastAndroid, Image, Text, TextInput, TouchableOpacity, View, KeyboardA
 import styles from './styles'
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase.js';
+import { auth } from '../../utils/firebase';
+import Button from '../../components/common/Button';
+import TextInput from '../../components/common/TextInput';
 
 const SignInScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
@@ -74,4 +76,4 @@ const SignInScreen = ({ navigation }) => {
   )
 }
 
-export default SignInScreen
+export default SignInScreen;

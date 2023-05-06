@@ -31,7 +31,7 @@ export default StyleSheet.create({
 
   shellContainer: {
     flex: 1,
-    backgroundColor: themes.colors.t
+    backgroundColor: themes.colors.primary,
     padding: 30,
   },
 
