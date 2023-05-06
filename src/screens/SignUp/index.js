@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ToastAndroid, Image, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
+import { ToastAndroid, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Text, View } from 'react-native';
 import styles from './styles';
@@ -8,8 +8,9 @@ import { auth, db } from '../../utils/firebase';
 import { collection, addDoc } from "firebase/firestore";
 import * as FileSystem from 'expo-file-system';
 import mime from 'react-native-mime-types';
-import TextInput from '../../components/common/CustomTextInput'
-import Button from '../../components/common/CustomButton'
+import CustomTextInput from '../../components/common/CustomTextInput'
+import CustomButton from '../../components/common/CustomButton'
+import themes from '../../utils/themes'
 
 
 const SignUpScreen = ({ navigation }) => {
@@ -124,7 +125,7 @@ const encodeImage = async (image) => {
       behavior='padding'>
       <TouchableOpacity onPress={handleBackButton}>
         <Image
-          style={styles.backButton} source={require('../images/backbutton.png')} />
+          style={styles.backButton} source={require('../../../images/backbutton.png')} />
       </TouchableOpacity>
       <View style={styles.outerContainer}>
         <TouchableOpacity onPress={handleSelectImage}>
@@ -132,36 +133,37 @@ const encodeImage = async (image) => {
             <Image style={styles.profileImage} source={{ uri: image.uri }} />
           ) : (
             <View style={styles.addImage}>
-              <Text style={{ color: '#87888c' }}>Add image</Text>
+              <Text style={{ color: themes.colors.secondaryText }}>Add image</Text>
             </View>
           )}
         </TouchableOpacity>
         <View style={styles.innerContainer}>
-          <TextInput
+          <CustomTextInput
             placeholder='Enter full name'
-            placeholderTextColor={'#87888c'}
+            placeholderTextColor={themes.colors.secondaryText}
             value={name}
             onChangeText={text => setName(text)} />
-          <TextInput
+          <CustomTextInput
             placeholder='Enter email'
-            placeholderTextColor={'#87888c'}
+            placeholderTextColor={themes.colors.secondaryText}
             value={email}
             onChangeText={text => setEmail(text)} />
-          <TextInput
+          <CustomTextInput
             placeholder='Enter password'
-            placeholderTextColor={'#87888c'}
+            placeholderTextColor={themes.colors.secondaryText}
             secureTextEntry
             value={password}
             onChangeText={text => setPassword(text)}
           />
-          <TextInput
+          <CustomTextInput
+
             placeholder='Confirm password'
-            placeholderTextColor={'#87888c'}
+            placeholderTextColor={themes.colors.secondaryText}
             secureTextEntry
             value={confirmPassword}
             onChangeText={text => setConfirmPassword(text)}
           />
-          <Button title="Register account" />
+          <CustomButton title="Register account" />
         </View>
       </View>
     </KeyboardAvoidingView>
