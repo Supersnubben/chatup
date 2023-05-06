@@ -10,13 +10,13 @@ const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
-      <Stack.Navigator>
-        <Stack.Screen options={{ headerShown: false }} name="SignInScreen" component={LoginScreen} />
-        <Stack.Screen options={{ headerShown: false }} name="SignUpScreen" component={SignUpScreen} />
-        <Stack.Screen options={{ headerShown: false }} name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen options={{ headerShown: false }} name="Chatscreen" component={ChatScreen} />
-        <Stack.Screen options={{ headerShown: false }} name="UserScreen" component={UserScreen} />
-      </Stack.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen options={{ headerShown: false }} name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="SignUpScreen" component={SignUpScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="Chatscreen" component={ChatScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="UserScreen" component={UserScreen} />
+    </Stack.Navigator>
   );
 };
 
