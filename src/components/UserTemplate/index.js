@@ -1,14 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View, Text, Image } from 'react-native';
+import styles from './styles';
 
-const UserTemplate = () => {
+const UserTemplate = ({ user }) => {
   return (
-    <View>
-      <Text>UsersTemplate</Text>
+    <View style={styles.container}>
+      <View style={styles.imageContainer}>
+        <Image source={{ uri: user.image }} style={styles.profileImage} />
+      </View>
+      <Text style={styles.name}>{user.name}</Text>
     </View>
-  )
-}
+  );
+};
 
-export default UserTemplate
-
-const styles = StyleSheet.create({})
+export default UserTemplate;
