@@ -5,7 +5,7 @@ import { Text, View } from 'react-native';
 import styles from './styles';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../utils/firebase';
-import { collection, addDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { CustomButton, CustomTextInput, BackButton } from '../../components/common';
 import themes from '../../utils/themes'
 import encodeImage from '../../utils/encodeImage'
@@ -49,7 +49,8 @@ const SignUpScreen = ({ navigation }) => {
         const base64Image = await encodeImage(image);
 
         // Add user to Firestore
-        await addDoc(collection(db, 'users'), {
+        const userDocRef = doc(collection(db, 'users'), user.uid);
+        await setDoc(userDocRef, {
           uid: user.uid,
           name: name,
           email: email,
@@ -116,11 +117,13 @@ const SignUpScreen = ({ navigation }) => {
             placeholder='Enter full name'
             placeholderTextColor={themes.colors.textSecondary}
             value={name}
+            autoCapitalize="words"
             onChangeText={text => setName(text)} />
           <CustomTextInput
             placeholder='Enter email'
             placeholderTextColor={themes.colors.textSecondary}
             value={email}
+            autoCapitalize="none"
             onChangeText={text => setEmail(text)} />
           <CustomTextInput
             placeholder='Enter password'
