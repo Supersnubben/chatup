@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
 
         </FlatList>
       </View>
-      <View style={styles.header}>
+      <View style={styles.footer}>
         <AddButton onPress={handleAddButton} />
       </View>
     </View>

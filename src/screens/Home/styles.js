@@ -11,7 +11,7 @@ export default StyleSheet.create({
   },
 
   innerContainer: {
-    flex: 6,
+    flex: 8,
     backgroundColor: themes.colors.primary,
     borderRadius: 50,
   },
@@ -40,6 +40,15 @@ export default StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'space-between',
+    marginTop: themes.spacing.large,
+  },
+
+  footer: {
+    flex: 0.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: themes.spacing.large,
   },
 
   logout: {
