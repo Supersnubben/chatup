@@ -6,7 +6,7 @@ import styles from './styles';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../utils/firebase';
 import { collection, doc, setDoc } from "firebase/firestore";
-import { CustomButton, CustomTextInput, BackButton } from '../../components/common';
+import { CustomButton, CustomTextInput, BackButton, BackButtonSecondary } from '../../components/common';
 import themes from '../../utils/themes'
 import encodeImage from '../../utils/encodeImage'
 
@@ -103,7 +103,7 @@ const SignUpScreen = ({ navigation }) => {
     <KeyboardAvoidingView
       style={styles.shellContainer}
       behavior='padding'>
-      <BackButton onPress={handleBackButton} />
+      <BackButtonSecondary onPress={handleBackButton} />
       <View style={styles.outerContainer}>
         <TouchableOpacity onPress={handleSelectImage} style={styles.addImage}>
           {image ? (
