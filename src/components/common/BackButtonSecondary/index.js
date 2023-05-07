@@ -6,7 +6,7 @@ const BackButton = ({ onPress, style }) => {
     return (
         <TouchableOpacity onPress={onPress}>
             <Image
-                source={require('/home/robin/repos/chatup/images/backbutton.png')}
+                source={require('/home/robin/repos/chatup/images/backbutton_secondary.png')}
                 style={[styles.backButton, style]} />
         </TouchableOpacity>
     )
