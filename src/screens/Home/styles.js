@@ -17,17 +17,18 @@ export default StyleSheet.create({
   },
 
   profileImage: {
-    marginTop: 20,
+    marginTop: 10,
     marginLeft: 20,
-    width: 50,
-    height: 50,
+    alignContent: 'center',
+    width: 40,
+    height: 40,
     borderWidth: 2,
     borderColor: themes.colors.primary,
-    borderRadius: 50 / 2,
+    borderRadius: 10,
   },
 
   nameContainer: {
-    marginTop: 20,
+    marginTop: 10,
     width: 180,
     height: 25,
     alignItems: 'center',
@@ -52,10 +53,14 @@ export default StyleSheet.create({
   },
 
   logout: {
-    marginTop: 20,
-    marginRight: 30,
+    marginBottom: 10,
+    marginRight: 40,
     width: 25,
     height: 25
+  },
+
+  text: {
+    ...themes.text.medium,
   },
 
 });
