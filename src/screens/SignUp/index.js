@@ -6,10 +6,9 @@ import styles from './styles';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../utils/firebase';
 import { collection, addDoc } from "firebase/firestore";
-import * as FileSystem from 'expo-file-system';
-import mime from 'react-native-mime-types';
 import { CustomButton, CustomTextInput, BackButton } from '../../components/common';
 import themes from '../../utils/themes'
+import encodeImage from '../../utils/encodeImage'
 
 
 const SignUpScreen = ({ navigation }) => {
@@ -18,25 +17,6 @@ const SignUpScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [image, setImage] = useState(null);
-
-  const encodeImage = async (image) => {
-    try {
-      const fileExtension = image.uri.split('.').pop();
-      const mimeType = mime.lookup(fileExtension) || 'image/png';
-
-      // Read the image file as base64
-      const base64Image = await FileSystem.readAsStringAsync(image.uri, {
-        encoding: FileSystem.EncodingType.Base64,
-      });
-
-      const base64WithMimeType = `data:${mimeType};base64,${base64Image}`;
-
-      console.log('Base64-encoded image:', base64WithMimeType);
-      return base64WithMimeType;
-    } catch (error) {
-      console.error('Error encoding image to base64:', error);
-    }
-  };
 
 
   const handleSignUp = () => {
