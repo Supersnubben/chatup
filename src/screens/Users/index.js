@@ -20,19 +20,23 @@ const UserScreen = ({ navigation }) => {
 
     fetchData();
   }, []);
-  
 
-const handleBack = () => {
-  navigation.navigate('HomeScreen');
-}
 
-const renderItem = ({ item }) => <UserTemplate user={item} />;
+  const handleBack = () => {
+    navigation.navigate('HomeScreen');
+  }
+
+  const handleUserPress = (selectedUser) => {
+    navigation.navigate('ChatScreen', { user: selectedUser });
+  };
+
+  const renderItem = ({ item }) => <UserTemplate user={item} onPress={handleUserPress} />;
 
   return (
     <View style={styles.outerContainer}>
       <View style={styles.header}>
-          <BackButtonPrimary style={styles.button} onPress={handleBack}/>
-          <Text style={styles.text}>Select user</Text>
+        <BackButtonPrimary style={styles.button} onPress={handleBack} />
+        <Text style={styles.text}>Select user</Text>
       </View>
       <View style={styles.innerContainer}>
         <FlatList
