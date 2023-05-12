@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 30, 255, 0.7)',
     padding: themes.spacing.large,
+    borderRadius: 20,
   },
 });
 
