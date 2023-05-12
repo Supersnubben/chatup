@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { BackButtonPrimary } from '../../components/common'
 import fetchUsers from '../../utils/fetchUsers'
 import UserTemplate from '../../components/UserTemplate'
+import { auth } from '../../utils/firebase'
 
 
 const UserScreen = ({ navigation }) => {
@@ -12,7 +13,8 @@ const UserScreen = ({ navigation }) => {
   useEffect(() => {
     const fetchData = async () => {
       const usersData = await fetchUsers();
-      const sortedUsers = Object.values(usersData).sort((a, b) =>
+      const currentUserId = auth.currentUser.uid;
+      const sortedUsers = Object.values(usersData).filter(user => user.uid !== currentUserId).sort((a, b) =>
         a.name.localeCompare(b.name),
       );
       setUsers(sortedUsers);
@@ -42,7 +44,7 @@ const UserScreen = ({ navigation }) => {
         <FlatList
           data={users}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id} />
+          keyExtractor={(item) => item.uid} />
       </View>
       <View style={styles.footer}>
       </View>
