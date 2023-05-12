@@ -60,6 +60,7 @@ const SignInScreen = ({ navigation }) => {
             placeholderTextColor={'#87888c'}
             value={email}
             autoCapitalize="none"
+            keyboardType="email-address"
             onChangeText={text => setEmail(text)} />
           <CustomTextInput
             placeholder='Enter password'
