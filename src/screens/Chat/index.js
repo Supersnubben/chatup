@@ -11,7 +11,37 @@ import ReceivedMessage from '../../components/chat/RecievedMessage'
 const ChatScreen = ({ route, navigation }) => {
   const { user } = route.params;
   const [message, setMessage] = useState('');
-  
+  const [messages, setMessages] = useState([]);
+
+  const senderId = auth.currentUser.uid;
+  const receiverId = user.uid;
+
+  const fetchMessages = (senderId, receiverId) => {
+    const messagesRef = collection(db, 'messages');
+    const q = query(
+      messagesRef,
+      where('senderId', 'in', [senderId, user.uid]),
+      where('receiverId', 'in', [senderId, user.uid]),
+      orderBy('createdAt', 'asc')
+    );
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const messages = [];
+      querySnapshot.forEach((doc) => {
+        const messageData = doc.data();
+        messages.unshift({ id: doc.id, ...messageData });
+      });
+      setMessages(messages);
+    });
+
+    return unsubscribe;
+  };
+
+  useEffect(() => {
+    const unsubscribe = fetchMessages(auth.currentUser.uid, user.uid);
+    return () => unsubscribe();
+  }, []);
+
   const sendMessage = async (senderId, receiverId, content) => {
     try {
       await addDoc(collection(db, 'messages'), {
@@ -33,8 +63,8 @@ const ChatScreen = ({ route, navigation }) => {
     if (message.trim().length > 0) {
       sendMessage(auth.currentUser.uid, user.uid, message);
       setMessage('');
+    }
   }
-}
   return (
     <KeyboardAvoidingView style={styles.container}>
       {user && (
@@ -54,17 +84,19 @@ const ChatScreen = ({ route, navigation }) => {
 
           </View>
           <View style={styles.innerContainer}>
-            <FlatList 
+            <FlatList
+              inverted
               data={messages}
+              initialNumToRender={10}
               renderItem={({ item }) => {
                 const isSentMessage = item.senderId === auth.currentUser.uid;
                 return isSentMessage ? (
-                  <SentMessage content={item.content} />
-                  ) : (
-                    <ReceivedMessage content={item.content} />
-                  );
-                }}
-                keyExtractor={(item) => item.id} />
+                  <SentMessage message={item.content} />
+                ) : (
+                  <ReceivedMessage message={item.content} />
+                );
+              }}
+              keyExtractor={(item) => item.id} />
           </View>
           <View style={styles.footer}>
             <TextInput
@@ -75,8 +107,8 @@ const ChatScreen = ({ route, navigation }) => {
               onChangeText={text => setMessage(text)}
             />
             <TouchableOpacity onPress={handleSend}>
-              <Image 
-                source={require('../../../images/sendbutton.png')} 
+              <Image
+                source={require('../../../images/sendbutton.png')}
                 style={styles.sendButton} />
             </TouchableOpacity>
 
