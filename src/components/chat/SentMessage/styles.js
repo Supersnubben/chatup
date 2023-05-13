@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     marginRight: 10,
     marginLeft: '25%',
-    marginBottom: 2,
+    marginBottom: 3,
   },
 
   text: {
