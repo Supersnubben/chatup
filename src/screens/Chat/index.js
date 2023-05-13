@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Text, View, TouchableOpacity, Image, FlatList, TextInput } from 'react-native';
+import { KeyboardAvoidingView, Text, View, TouchableOpacity, Image, FlatList, TextInput, BackHandler } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import styles from './styles';
 import { BackButtonPrimary } from '../../components/common';
@@ -64,7 +64,20 @@ const ChatScreen = ({ route, navigation }) => {
       sendMessage(auth.currentUser.uid, user.uid, message);
       setMessage('');
     }
+    
   }
+
+  useEffect(() => {
+    const backAction = () => {
+      handleBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+    })
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.container}>
       {user && (
@@ -109,6 +122,7 @@ const ChatScreen = ({ route, navigation }) => {
               placeholderTextColor={themes.colors.textSecondary}
               value={message}
               onChangeText={text => setMessage(text)}
+              onSubmitEditing={handleSend}
             />
             <TouchableOpacity onPress={handleSend}>
               <Image
