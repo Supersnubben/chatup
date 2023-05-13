@@ -15,8 +15,6 @@ export default StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    borderWidth: 2,
-    borderColor: themes.colors.secondary,
   },
   name: {
     ...themes.text.small,
