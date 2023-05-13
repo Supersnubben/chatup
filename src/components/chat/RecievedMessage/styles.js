@@ -29,25 +29,21 @@ const styles = StyleSheet.create({
 
   align: {
     alignSelf: 'flex-start',
-    marginLeft: themes.spacing.medium,
+    marginLeft: themes.spacing.small,
     marginRight: '35%',
     marginBottom: 3,
   },
 
   image: {
-    marginTop: '0%',
     width: 25,
     height: 25,
     borderRadius: 25 / 2,
-    borderWidth: 1,
-    borderColor: themes.colors.secondary
-
   },
 
   imageContainer: {
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    paddingBottom: themes.spacing.small,
+    paddingBottom: 3,
   },
 
 });
