@@ -6,11 +6,7 @@ const ReceivedMessage = ({ message, isLastInSequence, user }) => {
   const date = new Date();
   const options = { weekday: 'long', hour: '2-digit', minute: '2-digit' };
   const formattedDate = date.toLocaleString('en-US', options).replace(',', ' kl');
-  console.log(formattedDate);
 
-  const containerStyle = isLastInSequence
-    ? styles.lastMessageContainer
-    : styles.messageContainer;
   return (
     <View style={styles.outerContainer}>
       <View style={styles.imageContainer}>
