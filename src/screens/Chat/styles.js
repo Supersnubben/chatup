@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import themes from '../../utils/themes'
 
 const styles = StyleSheet.create({
@@ -40,6 +40,11 @@ const styles = StyleSheet.create({
         backgroundColor: themes.colors.secondary,
         borderBottomColor: themes.colors.thirdrary,
         borderBottomWidth: 1,
+        ...Platform.select({
+            ios: {
+                paddingTop: 20,
+            }
+        })
     },
 
     footer: {
@@ -52,6 +57,15 @@ const styles = StyleSheet.create({
         marginTop: themes.spacing.large,
         backgroundColor: themes.colors.secondary,
         gap: 30,
+        ...Platform.select({
+            ios: {
+                height: 100,
+                paddingBottom: 30,
+            },
+            android: {
+                height: 80,
+            }
+        })
     },
 
     backButton: {
