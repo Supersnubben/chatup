@@ -66,7 +66,7 @@ const ChatScreen = ({ route, navigation }) => {
     }
   }
   return (
-    <KeyboardAvoidingView style={styles.container}>
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.container}>
       {user && (
         <>
 
