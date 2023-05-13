@@ -88,12 +88,16 @@ const ChatScreen = ({ route, navigation }) => {
               inverted
               data={messages}
               initialNumToRender={10}
-              renderItem={({ item }) => {
+              renderItem={({ item, index }) => {
                 const isSentMessage = item.senderId === auth.currentUser.uid;
+                const nextMessage = messages[index - 1];
+                const isLastInSequence = nextMessage
+                  ? nextMessage.senderId !== item.senderId
+                  : true;
                 return isSentMessage ? (
                   <SentMessage message={item.content} />
                 ) : (
-                  <ReceivedMessage message={item.content} />
+                  <ReceivedMessage message={item.content} isLastInSequence={isLastInSequence} user={user} />
                 );
               }}
               keyExtractor={(item) => item.id} />
