@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles';
 import { BackButtonPrimary } from '../../components/common';
 import themes from '../../utils/themes';
-import { addDoc, collection, serverTimestamp, query, onSnapshot, orderBy, where } from 'firebase/firestore';
+import { updateDoc, getDocs, addDoc, collection, serverTimestamp, query, onSnapshot, orderBy, where } from 'firebase/firestore';
 import { auth, db } from '../../utils/firebase';
 import SentMessage from '../../components/chat/SentMessage'
 import ReceivedMessage from '../../components/chat/RecievedMessage'
@@ -53,6 +53,43 @@ const ChatScreen = ({ route, navigation }) => {
     } catch (error) {
       console.error('Error sending message:', error);
     }
+
+    const conversationRef = collection(db, 'conversations');
+    const q = query(
+      conversationRef,
+      where('user1Id', 'in', [senderId, receiverId]),
+      where('user2Id', 'in', [senderId, receiverId])
+    );
+    const conversationSnapshot = await getDocs(q);
+
+    if (!conversationSnapshot.empty) {
+      const conversationId = conversationSnapshot.docs[0].id;
+      await addDoc(collection(db, `conversations/${conversationId}/messages`), {
+        senderId,
+        receiverId,
+        content,
+        createdAt: serverTimestamp(),
+      });
+      // Update the lastMessage field
+      await updateDoc(doc(db, 'conversations', conversationId), {
+        lastMessage: content,
+        createdAt: serverTimestamp(),
+      });
+    } else {
+      // If the conversation doesn't exist, create it and add the message
+      const conversationRef = await addDoc(collection(db, 'conversations'), {
+        user1Id: senderId,
+        user2Id: receiverId,
+        lastMessage: content,
+        createdAt: serverTimestamp(),
+      });
+      await addDoc(collection(db, `conversations/${conversationRef.id}/messages`), {
+        senderId,
+        receiverId,
+        content,
+        createdAt: serverTimestamp(),
+      });
+    }
   };
 
   const handleBack = () => {
@@ -64,7 +101,7 @@ const ChatScreen = ({ route, navigation }) => {
       sendMessage(auth.currentUser.uid, user.uid, message);
       setMessage('');
     }
-    
+
   }
 
   useEffect(() => {
@@ -77,7 +114,7 @@ const ChatScreen = ({ route, navigation }) => {
       'hardwareBackPress',
       backAction,
     );
-    })
+  })
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.container}>
       {user && (
