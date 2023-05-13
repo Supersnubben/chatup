@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   outerContainer: {
     marginLeft: themes.spacing.medium,
     flexDirection: 'row',
+    marginRight: '35%',
   },
 
   messageContainer: {
@@ -30,7 +31,6 @@ const styles = StyleSheet.create({
   align: {
     alignSelf: 'flex-start',
     marginLeft: themes.spacing.small,
-    marginRight: '35%',
     marginBottom: 3,
   },
 
@@ -45,6 +45,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingBottom: 3,
   },
+
+  date: {
+    fontSize: 8,
+    color: themes.colors.textSecondary,
+    alignSelf: 'flex-start',
+    marginLeft: 12,
+  }
 
 });
 
