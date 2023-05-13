@@ -1,25 +1,40 @@
-import { Text, View } from 'react-native'
-import React from 'react'
+import { Text, View, Image } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import styles from './styles'
-import formattedDate from '../RecievedMessage'
+import getUserById from '../../../utils/getUserById'
+import { auth } from '../../../utils/firebase'
 
-const ConversationTemplate = (user, conversation, lastMessage) => {
-  return (
-    <View style={styles.outerContainer}>
-        <View style={styles.imageContainer}>
-            <Image source={{ uri: user.image }} style={styles.profileImage} />
-        </View>
-        <View style={styles.infoContainer}>
-            <View>
-                <Text style={styles.nameText}>{user.name}</Text>
+const ConversationTemplate = ({ conversation }) => {
+    const [otherUser, setOtherUser] = useState(null);
+
+    useEffect(() => {
+        const fetchOtherUser = async () => {
+            const otherUserId = conversation.user1Id === auth.currentUser.uid
+                ? conversation.user2Id
+                : conversation.user1Id;
+            const userData = await getUserById(otherUserId);
+            setOtherUser(userData);
+        };
+
+        fetchOtherUser();
+    }, [conversation]);
+
+    if (!otherUser) return null;
+    return (
+        <View style={styles.outerContainer}>
+            <Image source={{ uri: otherUser.image }} style={[styles.profileImage, styles.imageContainer]} />
+
+            <View style={styles.infoContainer}>
+                <View>
+                    <Text style={styles.nameText}>{otherUser.name}</Text>
+                </View>
+                <View>
+                    <Text style={styles.messageText}>{conversation.lastMessage} - { }</Text>
+                </View>
             </View>
-            <View>
-                <Text style={styles.messageText}>{lastMessage} - {formattedDate}</Text>
-            </View>
+
         </View>
-      
-    </View>
-  )
+    )
 }
 
 export default ConversationTemplate
