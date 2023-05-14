@@ -1,10 +1,10 @@
-import { Text, View, Image } from 'react-native'
+import { Text, View, Image, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import styles from './styles'
 import getUserById from '../../../utils/getUserById'
 import { auth } from '../../../utils/firebase'
 
-const ConversationTemplate = ({ conversation }) => {
+const ConversationTemplate = ({ conversation, onPress }) => {
     const [otherUser, setOtherUser] = useState(null);
 
     const lastMessageTimestamp = conversation.createdAt.toDate();
@@ -31,7 +31,7 @@ const ConversationTemplate = ({ conversation }) => {
 
     if (!otherUser) return null;
     return (
-        <View style={styles.outerContainer}>
+        <TouchableOpacity style={styles.outerContainer} onPress={() => onPress(conversation)}>
             <Image source={{ uri: otherUser.image }} style={[styles.profileImage, styles.imageContainer]} />
 
             <View style={styles.infoContainer}>
@@ -43,7 +43,7 @@ const ConversationTemplate = ({ conversation }) => {
                 </View>
             </View>
 
-        </View>
+        </TouchableOpacity>
     )
 }
 
