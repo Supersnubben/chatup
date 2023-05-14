@@ -36,6 +36,19 @@ const styles = StyleSheet.create({
     color: '#484848',
   },
 
+  textContainer: {
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+
+  dateText: {
+    color: themes.colors.secondary,
+    fontSize: 10,
+
+  }
+
 });
 
 export default styles;

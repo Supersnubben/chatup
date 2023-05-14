@@ -38,8 +38,9 @@ const ConversationTemplate = ({ conversation, onPress }) => {
                 <View>
                     <Text style={styles.nameText}>{otherUser.name}</Text>
                 </View>
-                <View>
-                    <Text style={styles.messageText}>{conversation.lastMessage} - {formattedDate}</Text>
+                <View style={styles.textContainer}>
+                    <Text style={styles.messageText}>{conversation.lastMessage}</Text>
+                    <Text style={styles.dateText}> -   {formattedDate}</Text>
                 </View>
             </View>
 
