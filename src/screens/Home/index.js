@@ -3,7 +3,7 @@ import styles from './styles'
 import React, { useState, useEffect, useCallback } from 'react'
 import { LogoutButton, AddButton } from '../../components/common'
 import fetchCurrentUser from '../../utils/fetchCurrentUser'
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, getDoc, collection, doc as firestoreDoc, } from 'firebase/firestore';
 import { auth, db } from '../../utils/firebase'
 import ConversationTemplate from '../../components/chat/ConversationTemplate'
 import { useFocusEffect } from '@react-navigation/native'
@@ -13,16 +13,20 @@ const HomeScreen = ({ navigation }) => {
   const [conversations, setConversations] = useState([]);
 
   const fetchConversations = useCallback(async (userId) => {
-    // Fetch conversations for this user from Firebase
     const querySnapshot = await getDocs(collection(db, "conversations"));
-    const conversationsData = [];
-    querySnapshot.forEach((doc) => {
-      if (doc.data().user1Id.includes(userId) || doc.data().user2Id.includes(userId)) {
-        conversationsData.push(doc.data());
+    const conversationsData = await Promise.all(querySnapshot.docs.map(async (doc) => {
+      const conversation = doc.data();
+      if (conversation.user1Id === userId || conversation.user2Id === userId) {
+        const otherUserId = conversation.user1Id === userId ? conversation.user2Id : conversation.user1Id;
+        const otherUserDoc = await getDoc(firestoreDoc(db, "users", otherUserId));
+        const otherUser = otherUserDoc.data();
+        return { ...conversation, otherUser };
       }
-    });
-    setConversations(conversationsData);
+      return null;
+    }));
+    setConversations(conversationsData.filter(conversation => conversation !== null));
   }, []);
+  
 
   useEffect(() => {
     fetchConversations(auth.currentUser.uid);
@@ -34,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
     }, [fetchConversations])
   );
 
-  const renderItem = ({ item }) => <ConversationTemplate conversation={item} />;
+  const renderItem = ({ item }) => <ConversationTemplate conversation={item} onPress={handleUserPress} />;
 
 
 
@@ -71,6 +75,11 @@ const HomeScreen = ({ navigation }) => {
     navigation.navigate('UserScreen');
   }
 
+  const handleUserPress = (selectedConversation) => {
+    navigation.navigate('ChatScreen', { user: selectedConversation.otherUser });
+  };
+  
+
   const base64Image = user.image;
 
   return (
@@ -93,7 +102,7 @@ const HomeScreen = ({ navigation }) => {
             <FlatList
               data={conversations}
               renderItem={renderItem}
-              keyExtractor={(item) => item.id} />
+              keyExtractor={(item) => item.uid} />
           </View>
           <View style={styles.footer}>
             <AddButton onPress={handleAddButton} />
