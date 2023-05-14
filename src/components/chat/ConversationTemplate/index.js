@@ -16,7 +16,6 @@ const ConversationTemplate = ({ conversation, onPress }) => {
 
     const formattedDate = `${day} ${hour}:${minute}`;
 
-
     useEffect(() => {
         const fetchOtherUser = async () => {
             const otherUserId = conversation.user1Id === auth.currentUser.uid
@@ -25,9 +24,15 @@ const ConversationTemplate = ({ conversation, onPress }) => {
             const userData = await getUserById(otherUserId);
             setOtherUser(userData);
         };
-
+        
         fetchOtherUser();
     }, [conversation]);
+    if (!otherUser) return null;
+
+    const lastSenderId = conversation.lastSenderId;
+    const name = otherUser.name;
+    const firstName = name.split(' ')[0];
+    const messagePrefix = lastSenderId === auth.currentUser.uid ? 'You: ' : `${firstName}: `;
 
     if (!otherUser) return null;
     return (
@@ -39,6 +44,7 @@ const ConversationTemplate = ({ conversation, onPress }) => {
                     <Text style={styles.nameText}>{otherUser.name}</Text>
                 </View>
                 <View style={styles.textContainer}>
+                    <Text>{messagePrefix}</Text>
                     <Text style={styles.messageText}>{conversation.lastMessage}</Text>
                     <Text style={styles.dateText}> -   {formattedDate}</Text>
                 </View>
