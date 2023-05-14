@@ -70,6 +70,7 @@ const ChatScreen = ({ route, navigation }) => {
       // Update the lastMessage field
       await updateDoc(doc(db, 'conversations', conversationId), {
         lastMessage: content,
+        lastSenderId: senderId,
         createdAt: serverTimestamp(),
       });
     } else {
@@ -78,6 +79,7 @@ const ChatScreen = ({ route, navigation }) => {
         user1Id: senderId,
         user2Id: receiverId,
         lastMessage: content,
+        lastSenderId: senderId,
         createdAt: serverTimestamp(),
       });
       await addDoc(collection(db, `conversations/${conversationRef.id}/messages`), {
