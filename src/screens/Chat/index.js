@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles';
 import { BackButtonPrimary } from '../../components/common';
 import themes from '../../utils/themes';
-import { updateDoc, getDocs, addDoc, collection, serverTimestamp, query, onSnapshot, orderBy, where } from 'firebase/firestore';
+import { doc, updateDoc, getDocs, addDoc, collection, serverTimestamp, query, onSnapshot, orderBy, where } from 'firebase/firestore';
 import { auth, db } from '../../utils/firebase';
 import SentMessage from '../../components/chat/SentMessage'
 import ReceivedMessage from '../../components/chat/RecievedMessage'
@@ -12,9 +12,6 @@ const ChatScreen = ({ route, navigation }) => {
   const { user } = route.params;
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-
-  const senderId = auth.currentUser.uid;
-  const receiverId = user.uid;
 
   const fetchMessages = (senderId, receiverId) => {
     const messagesRef = collection(db, 'messages');
