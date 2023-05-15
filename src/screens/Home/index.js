@@ -3,7 +3,7 @@ import styles from './styles'
 import React, { useState, useEffect, useCallback } from 'react'
 import { LogoutButton, AddButton } from '../../components/common'
 import fetchCurrentUser from '../../utils/fetchCurrentUser'
-import { getDocs, getDoc, collection, doc as firestoreDoc, } from 'firebase/firestore';
+import { getDoc, collection, doc as firestoreDoc, onSnapshot, query } from 'firebase/firestore';
 import { auth, db } from '../../utils/firebase'
 import ConversationTemplate from '../../components/chat/ConversationTemplate'
 import { useFocusEffect } from '@react-navigation/native'
@@ -12,24 +12,27 @@ const HomeScreen = ({ navigation }) => {
   const [user, setUser] = useState('');
   const [conversations, setConversations] = useState([]);
 
-  const fetchConversations = useCallback(async (userId) => {
-    const querySnapshot = await getDocs(collection(db, "conversations"));
-    const conversationsData = await Promise.all(querySnapshot.docs.map(async (doc) => {
-      const conversation = doc.data();
-      if (conversation.user1Id === userId || conversation.user2Id === userId) {
-        const otherUserId = conversation.user1Id === userId ? conversation.user2Id : conversation.user1Id;
-        const otherUserDoc = await getDoc(firestoreDoc(db, "users", otherUserId));
-        const otherUser = otherUserDoc.data();
-        return { ...conversation, otherUser };
-      }
-      return null;
-    }));
-    setConversations(conversationsData.filter(conversation => conversation !== null));
+  const fetchConversations = useCallback((userId) => {
+    const unsubscribe = onSnapshot(query(collection(db, "conversations")), async (querySnapshot) => {
+      const conversationsData = await Promise.all(querySnapshot.docs.map(async (doc) => {
+        const conversation = doc.data();
+        if (conversation.user1Id === userId || conversation.user2Id === userId) {
+          const otherUserId = conversation.user1Id === userId ? conversation.user2Id : conversation.user1Id;
+          const otherUserDoc = await getDoc(firestoreDoc(db, "users", otherUserId));
+          const otherUser = otherUserDoc.data();
+          return { ...conversation, otherUser };
+        }
+        return null;
+      }));
+      setConversations(conversationsData.filter(conversation => conversation !== null));
+    });
+
+    return unsubscribe;
   }, []);
-  
 
   useEffect(() => {
-    fetchConversations(auth.currentUser.uid);
+    const unsubscribe = fetchConversations(auth.currentUser.uid);
+    return () => unsubscribe();
   }, [fetchConversations]);
 
   useFocusEffect(
@@ -78,7 +81,7 @@ const HomeScreen = ({ navigation }) => {
   const handleUserPress = (selectedConversation) => {
     navigation.navigate('ChatScreen', { user: selectedConversation.otherUser });
   };
-  
+
 
   const base64Image = user.image;
 
