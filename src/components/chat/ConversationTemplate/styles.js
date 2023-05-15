@@ -33,12 +33,11 @@ const styles = StyleSheet.create({
 
   messageText: {
     fontStyle: 'italic',
-    color: '#484848',
+    color: themes.colors.thirdrary,
   },
 
   textContainer: {
     flexDirection: 'row',
-    gap: 10,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
