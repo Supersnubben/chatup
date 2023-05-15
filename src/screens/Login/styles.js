@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import themes from '/home/robin/repos/chatup/src/utils/themes.js'
+import themes from '../../utils/themes'
 
 export default StyleSheet.create({
 
