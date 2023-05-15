@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 import CustomButton from '../../components/common/CustomButton';
 import CustomTextInput from '../../components/common/CustomTextInput';
+import logo from '../../../images/logo.png';
 
 const SignInScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
@@ -50,7 +51,7 @@ const SignInScreen = ({ navigation }) => {
       <View style={styles.outerContainer}>
         <Image
           style={styles.logo}
-          source={require('/home/robin/repos/chatup/images/logo.png')} />
+          source={logo} />
         <View>
           <Text style={styles.text}>Login to continue</Text>
         </View>
