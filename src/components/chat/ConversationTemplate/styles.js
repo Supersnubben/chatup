@@ -11,15 +11,29 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   imageContainer: {
-    height: 50,
     width: 50,
+    height: 50,
     borderRadius: 25,
+
     marginTop: themes.spacing.medium,
   },
 
   profileImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     resizeMode: 'cover',
 
+  },
+
+  statusCircleContainer: {
+    position: 'absolute',
+    top: '80%',
+    right: 0,
+    transform: [{ translateY: -5 }],
+    width: 10,
+    height: 10,
+    borderRadius: 5,
   },
 
   infoContainer: {

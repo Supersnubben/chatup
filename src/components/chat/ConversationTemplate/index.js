@@ -1,5 +1,6 @@
 import { Text, View, Image, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
+import StatusCircle from '../../StatusCircle';
 import styles from './styles'
 import getUserById from '../../../utils/getUserById'
 import { auth } from '../../../utils/firebase'
@@ -38,8 +39,13 @@ const ConversationTemplate = ({ conversation, onPress }) => {
     if (!otherUser) return null;
     return (
         <TouchableOpacity style={styles.outerContainer} onPress={() => onPress(conversation)}>
-            <Image source={{ uri: otherUser.image }} style={[styles.profileImage, styles.imageContainer]} />
 
+            <View style={styles.imageContainer}>
+                <Image source={{ uri: otherUser.image }} style={styles.profileImage} />
+                <View style={styles.statusCircleContainer}>
+                    <StatusCircle active={otherUser?.active} />
+                </View>
+            </View>
             <View style={styles.infoContainer}>
                 <View>
                     <Text style={styles.nameText}>{otherUser.name}</Text>
