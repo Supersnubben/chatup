@@ -14,15 +14,34 @@ const styles = StyleSheet.create({
         flex: 8,
     },
 
-    profileImage: {
+    imageContainer: {
+        width: 40,
+        height: 40,
+        borderRadius: 10,
         marginTop: 30,
         marginLeft: 20,
         alignContent: 'center',
+        gap: themes.spacing.medium,
+    },
+
+
+    statusCircleContainer: {
+        position: 'absolute',
+        top: '90%',
+        right: '-5%',
+        transform: [{ translateY: -5 }],
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+    },
+
+    profileImage: {
         width: 40,
         height: 40,
         borderWidth: 2,
         borderColor: themes.colors.primary,
         borderRadius: 10,
+        resizeMode: 'cover',
     },
 
     nameContainer: {

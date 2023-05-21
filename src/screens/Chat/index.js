@@ -7,6 +7,7 @@ import { doc, updateDoc, getDocs, addDoc, collection, serverTimestamp, query, on
 import { auth, db } from '../../utils/firebase';
 import SentMessage from '../../components/chat/SentMessage'
 import ReceivedMessage from '../../components/chat/RecievedMessage'
+import StatusCircle from '../../components/StatusCircle';
 
 const ChatScreen = ({ route, navigation }) => {
   const { user } = route.params;
@@ -122,10 +123,12 @@ const ChatScreen = ({ route, navigation }) => {
           <View style={styles.header}>
             <BackButtonPrimary style={styles.backButton} onPress={handleBack} />
             <TouchableOpacity>
-              <Image
-                style={styles.profileImage}
-                source={{ uri: user.image }}
-                resizeMode="cover" />
+              <View style={styles.imageContainer}>
+                <Image source={{ uri: user.image }} style={styles.profileImage} />
+                <View style={styles.statusCircleContainer}>
+                  <StatusCircle active={user?.active} />
+                </View>
+              </View>
             </TouchableOpacity>
             <View style={styles.nameContainer}>
               <Text style={styles.text}>{user.name}</Text>
