@@ -7,12 +7,13 @@ import { auth } from '../../../utils/firebase'
 const ConversationTemplate = ({ conversation, onPress }) => {
     const [otherUser, setOtherUser] = useState(null);
 
-    const lastMessageTimestamp = conversation.createdAt.toDate();
+    const lastMessageTimestamp = conversation.createdAt ? conversation.createdAt.toDate() : null;
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-    const day = days[lastMessageTimestamp.getDay()];
-    const hour = lastMessageTimestamp.getHours().toString().padStart(2, '0');
-    const minute = lastMessageTimestamp.getMinutes().toString().padStart(2, '0');
+    const dayIndex = lastMessageTimestamp?.getDay();
+    const day = dayIndex !== undefined ? days[dayIndex] : '';
+    const hour = (lastMessageTimestamp?.getHours() ?? '').toString().padStart(2, '0');
+    const minute = (lastMessageTimestamp?.getMinutes() ?? '').toString().padStart(2, '0');
 
     const formattedDate = `${day} ${hour}:${minute}`;
 
@@ -24,7 +25,7 @@ const ConversationTemplate = ({ conversation, onPress }) => {
             const userData = await getUserById(otherUserId);
             setOtherUser(userData);
         };
-        
+
         fetchOtherUser();
     }, [conversation]);
     if (!otherUser) return null;
