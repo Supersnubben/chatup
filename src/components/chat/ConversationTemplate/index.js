@@ -8,7 +8,8 @@ import useUserActivity from '../../../utils/useUserActivity';
 
 const ConversationTemplate = ({ conversation, onPress }) => {
     const [otherUser, setOtherUser] = useState(null);
-
+    const [otherUserId, setOtherUserId] = useState(null);
+    const isLoggedIn = useUserActivity(otherUserId);
     const lastMessageTimestamp = conversation.createdAt ? conversation.createdAt.toDate() : null;
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -19,7 +20,7 @@ const ConversationTemplate = ({ conversation, onPress }) => {
 
     const formattedDate = `${day} ${hour}:${minute}`;
 
-    useUserActivity();
+
 
     useEffect(() => {
         const fetchOtherUser = async () => {
@@ -27,6 +28,7 @@ const ConversationTemplate = ({ conversation, onPress }) => {
                 ? conversation.user2Id
                 : conversation.user1Id;
             const userData = await getUserById(otherUserId);
+            setOtherUserId(otherUserId);
             setOtherUser(userData);
         };
 
@@ -40,13 +42,14 @@ const ConversationTemplate = ({ conversation, onPress }) => {
     const messagePrefix = lastSenderId === auth.currentUser.uid ? 'You: ' : `${firstName}: `;
 
     if (!otherUser) return null;
+
     return (
         <TouchableOpacity style={styles.outerContainer} onPress={() => onPress(conversation)}>
 
             <View style={styles.imageContainer}>
                 <Image source={{ uri: otherUser.image }} style={styles.profileImage} />
                 <View style={styles.statusCircleContainer}>
-                    <StatusCircle active={otherUser?.isLoggedIn} />
+                    <StatusCircle active={isLoggedIn} />
                 </View>
             </View>
             <View style={styles.infoContainer}>
