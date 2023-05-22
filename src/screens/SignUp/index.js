@@ -10,7 +10,6 @@ import { CustomButton, CustomTextInput, BackButton, BackButtonSecondary } from '
 import themes from '../../utils/themes'
 import encodeImage from '../../utils/encodeImage'
 
-
 const SignUpScreen = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -54,7 +53,8 @@ const SignUpScreen = ({ navigation }) => {
           uid: user.uid,
           name: name,
           email: email,
-          image: base64Image
+          image: base64Image,
+          isLoggedIn: true,
         });
 
         setName('');
