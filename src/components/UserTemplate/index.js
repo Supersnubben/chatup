@@ -5,14 +5,14 @@ import styles from './styles';
 import useUserActivity from '../../utils/useUserActivity';
 
 const UserTemplate = ({ user, onPress }) => {
-  useUserActivity();
+  const isLoggedIn = useUserActivity(user.uid);
 
   return (
     <TouchableOpacity onPress={() => onPress(user)} style={styles.container}>
       <View style={styles.imageContainer}>
         <Image source={{ uri: user.image }} style={styles.profileImage} />
         <View style={styles.statusCircleContainer}>
-          <StatusCircle active={user?.isLoggedIn} />
+          <StatusCircle active={isLoggedIn} />
         </View>
       </View>
       <Text style={styles.name}>{user.name}</Text>

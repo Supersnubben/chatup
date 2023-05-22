@@ -11,11 +11,10 @@ import StatusCircle from '../../components/StatusCircle';
 import useUserActivity from '../../utils/useUserActivity';
 
 const ChatScreen = ({ route, navigation }) => {
-  useUserActivity();
   const { user } = route.params;
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-
+  const isLoggedIn = useUserActivity(user.uid);
   const fetchMessages = (senderId, receiverId) => {
     const messagesRef = collection(db, 'messages');
     const q = query(
@@ -103,7 +102,6 @@ const ChatScreen = ({ route, navigation }) => {
       sendMessage(auth.currentUser.uid, user.uid, message);
       setMessage('');
     }
-
   }
 
   useEffect(() => {
@@ -128,7 +126,7 @@ const ChatScreen = ({ route, navigation }) => {
               <View style={styles.imageContainer}>
                 <Image source={{ uri: user.image }} style={styles.profileImage} />
                 <View style={styles.statusCircleContainer}>
-                  <StatusCircle active={user?.isLoggedIn} />
+                  <StatusCircle active={isLoggedIn} />
                 </View>
               </View>
             </TouchableOpacity>
