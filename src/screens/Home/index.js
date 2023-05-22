@@ -105,7 +105,7 @@ const HomeScreen = ({ navigation }) => {
             <FlatList
               data={conversations}
               renderItem={renderItem}
-              keyExtractor={(item) => item.uid} />
+              keyExtractor={(item) => item.id} />
           </View>
           <View style={styles.footer}>
             <AddButton onPress={handleAddButton} />
