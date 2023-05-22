@@ -4,6 +4,7 @@ import StatusCircle from '../../StatusCircle';
 import styles from './styles'
 import getUserById from '../../../utils/getUserById'
 import { auth } from '../../../utils/firebase'
+import useUserActivity from '../../../utils/useUserActivity';
 
 const ConversationTemplate = ({ conversation, onPress }) => {
     const [otherUser, setOtherUser] = useState(null);
@@ -17,6 +18,8 @@ const ConversationTemplate = ({ conversation, onPress }) => {
     const minute = (lastMessageTimestamp?.getMinutes() ?? '').toString().padStart(2, '0');
 
     const formattedDate = `${day} ${hour}:${minute}`;
+
+    useUserActivity();
 
     useEffect(() => {
         const fetchOtherUser = async () => {
@@ -43,7 +46,7 @@ const ConversationTemplate = ({ conversation, onPress }) => {
             <View style={styles.imageContainer}>
                 <Image source={{ uri: otherUser.image }} style={styles.profileImage} />
                 <View style={styles.statusCircleContainer}>
-                    <StatusCircle active={otherUser?.active} />
+                    <StatusCircle active={otherUser?.isLoggedIn} />
                 </View>
             </View>
             <View style={styles.infoContainer}>

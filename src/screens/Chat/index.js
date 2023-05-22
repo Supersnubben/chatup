@@ -8,8 +8,10 @@ import { auth, db } from '../../utils/firebase';
 import SentMessage from '../../components/chat/SentMessage'
 import ReceivedMessage from '../../components/chat/RecievedMessage'
 import StatusCircle from '../../components/StatusCircle';
+import useUserActivity from '../../utils/useUserActivity';
 
 const ChatScreen = ({ route, navigation }) => {
+  useUserActivity();
   const { user } = route.params;
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
@@ -126,7 +128,7 @@ const ChatScreen = ({ route, navigation }) => {
               <View style={styles.imageContainer}>
                 <Image source={{ uri: user.image }} style={styles.profileImage} />
                 <View style={styles.statusCircleContainer}>
-                  <StatusCircle active={user?.active} />
+                  <StatusCircle active={user?.isLoggedIn} />
                 </View>
               </View>
             </TouchableOpacity>
